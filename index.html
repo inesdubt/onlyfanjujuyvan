@@ -5,119 +5,161 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>onlyfanjujuyvan</title>
 
-  <!-- Police proche du style OnlyFans -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
       font-family: 'Inter', sans-serif;
     }
 
     body {
-      background-color: #f8f9fb;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      margin: 0;
+      background: #f1f1f1;
     }
 
-    .card {
-      background: #ffffff;
-      width: 100%;
-      max-width: 420px;
-      padding: 40px 30px;
-      border-radius: 18px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-      text-align: center;
-    }
-
-    .logo {
-      font-size: 28px;
+    /* HEADER */
+    header {
+      background: #00aff0;
+      padding: 14px 20px;
+      color: white;
+      font-size: 22px;
       font-weight: 700;
-      color: #00aff0;
-      margin-bottom: 20px;
     }
 
-    .badge {
-      display: inline-block;
-      background: #e6f7fd;
-      color: #00aff0;
-      font-size: 13px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      margin-bottom: 25px;
-      font-weight: 600;
+    header span {
+      font-weight: 400;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 420px;
+      margin: 30px auto;
+      padding: 0 16px;
+    }
+
+    /* CARD */
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: all 0.4s ease;
+    }
+
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: #ddd;
+      margin: 0 auto 16px;
     }
 
     h1 {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 15px;
-      color: #111;
+      font-size: 20px;
+      margin-bottom: 8px;
     }
 
-    p {
+    .subtitle {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      background: #00aff0;
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 14px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #0099d6;
+    }
+
+    /* SURPRISE */
+    .surprise {
+      display: none;
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .surprise h2 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .surprise p {
       font-size: 16px;
       line-height: 1.6;
-      color: #444;
-      margin-bottom: 20px;
+      color: #333;
     }
 
     .highlight {
-      font-weight: 600;
       color: #00aff0;
-    }
-
-    .cta {
-      margin-top: 30px;
-      font-size: 18px;
       font-weight: 700;
-      color: #111;
     }
 
-    .date {
-      margin-top: 10px;
-      font-size: 17px;
-      font-weight: 600;
-    }
-
-    .footer {
-      margin-top: 30px;
-      font-size: 13px;
-      color: #888;
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 
 <body>
-  <h1>ÇA MARCHE 🎉</h1>
 
-  <div class="card">
-    <div class="logo">onlyfanjujuyvan</div>
-    <div class="badge">Abonnement validé ✔</div>
+  <header>
+    onlyfan<span>jujuyvan</span>
+  </header>
 
-    <h1>Ahaha… vous avez été surpris ?? 😏</h1>
+  <div class="container">
+    <div class="card" id="card">
 
-    <p>
-      Bienvenue à nos <span class="highlight">30 ans</span> 🎉<br><br>
-      Venez célébrer avec nous cette nouvelle décennie le
-    </p>
+      <!-- ÉTAT 1 -->
+      <div id="subscribeView">
+        <div class="avatar"></div>
+        <h1>Juju & Yvan</h1>
+        <div class="subtitle">Contenu exclusif • Abonnement requis</div>
+        <button class="btn" onclick="reveal()">S’abonner</button>
+      </div>
 
-    <div class="cta">📅 6 septembre 2026</div>
+      <!-- ÉTAT 2 -->
+      <div class="surprise" id="surpriseView">
+        <h2>Ahaha… vous avez mordu 😏</h2>
+        <p>
+          Bienvenue à nos <span class="highlight">30 ans</span> 🎉<br><br>
+          Venez célébrer avec nous cette nouvelle décennie le
+          <br><br>
+          <span class="highlight">6 septembre 2026</span>
+          <br><br>
+          avec pour seul thème et seul mot d’ordre :
+          <br><br>
+          <span class="highlight">SURPRENEZ-NOUS</span>
+        </p>
+      </div>
 
-    <p class="date">
-      avec pour seul thème et seul mot d’ordre :
-      <br><br>
-      <span class="highlight">SURPRENEZ-NOUS</span>
-    </p>
-
-    <div class="footer">
-      Merci pour votre présence ❤️<br>
-      J&Y
     </div>
   </div>
+
+  <script>
+    function reveal() {
+      document.getElementById('subscribeView').style.display = 'none';
+      document.getElementById('surpriseView').style.display = 'block';
+    }
+  </script>
+
 </body>
 </html>
+
