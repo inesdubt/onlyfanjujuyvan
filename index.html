@@ -15,14 +15,15 @@
 
     body {
       margin: 0;
-      background: #f1f1f1;
+      background: #f2f2f2;
     }
 
+    /* HEADER MOBILE */
     header {
       background: #00aff0;
-      padding: 14px 20px;
       color: white;
-      font-size: 22px;
+      padding: 14px;
+      font-size: 20px;
       font-weight: 700;
     }
 
@@ -31,26 +32,26 @@
     }
 
     .container {
+      padding: 16px;
       max-width: 420px;
-      margin: 30px auto;
-      padding: 0 16px;
+      margin: 0 auto;
     }
 
     .card {
       background: white;
-      border-radius: 16px;
+      border-radius: 18px;
       padding: 24px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
       text-align: center;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
       position: relative;
       overflow: hidden;
     }
 
     .avatar {
-      width: 96px;
-      height: 96px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #ddd, #bbb);
+      background: #ddd;
       margin: 0 auto 16px;
     }
 
@@ -62,19 +63,7 @@
     .subtitle {
       font-size: 14px;
       color: #666;
-      margin-bottom: 16px;
-    }
-
-    .price {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-
-    .price span {
-      font-size: 14px;
-      font-weight: 400;
-      color: #666;
+      margin-bottom: 24px;
     }
 
     .btn {
@@ -99,31 +88,40 @@
       margin-top: 10px;
     }
 
-    .loading,
-    .surprise {
-      display: none;
-    }
-
+    /* LOADING */
     .loading {
-      font-size: 16px;
+      display: none;
       padding: 40px 0;
+      font-size: 16px;
       animation: pulse 1.2s infinite;
     }
 
     @keyframes pulse {
-      0% { opacity: 0.4; }
+      0% { opacity: .4; }
       50% { opacity: 1; }
-      100% { opacity: 0.4; }
+      100% { opacity: .4; }
     }
 
-    .surprise h2 {
+    /* INVITATION */
+    .invite {
+      display: none;
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .invite h2 {
       font-size: 22px;
       margin-bottom: 12px;
     }
 
-    .surprise p {
+    .invite p {
       font-size: 16px;
       line-height: 1.6;
+      margin-bottom: 20px;
     }
 
     .highlight {
@@ -131,18 +129,33 @@
       font-weight: 700;
     }
 
-    /* Confettis */
+    .map {
+      border-radius: 14px;
+      overflow: hidden;
+      margin-top: 20px;
+      border: 1px solid #ddd;
+    }
+
+    iframe {
+      width: 100%;
+      height: 220px;
+      border: none;
+    }
+
+    /* CONFETTIS */
     .confetti {
       position: absolute;
       width: 8px;
       height: 8px;
       background: #00aff0;
       animation: fall 2.5s linear infinite;
+      top: -10px;
     }
 
     @keyframes fall {
-      from { transform: translateY(-20px) rotate(0deg); }
-      to { transform: translateY(500px) rotate(360deg); }
+      to {
+        transform: translateY(600px) rotate(360deg);
+      }
     }
   </style>
 </head>
@@ -156,42 +169,37 @@
 <div class="container">
   <div class="card" id="card">
 
-    <!-- ÉTAPE 1 -->
+    <!-- ÉTAT 1 : ABONNEMENT -->
     <div id="subscribeView">
       <div class="avatar"></div>
       <h1>Juju & Yvan</h1>
       <div class="subtitle">Créateurs • Contenu exclusif</div>
-      <div class="price">9,99 € <span>/ mois</span></div>
       <button class="btn" onclick="subscribe()">S’abonner</button>
       <div class="small">Paiement sécurisé • Annulation à tout moment</div>
     </div>
 
-    <!-- ÉTAPE 2 -->
+    <!-- LOADING -->
     <div class="loading" id="loadingView">
       Validation de l’abonnement…
     </div>
 
-    <!-- ÉTAPE 3 -->
-    <div class="surprise" id="surpriseView">
-    
-    <h1>Juju & Yvan</h1>
-    <div class="age">Célèbrent leurs 30 ans</div>
+    <!-- ÉTAT 2 : INVITATION -->
+    <div class="invite" id="inviteView">
+      <h2>🎉 Surprise !</h2>
+      <p>
+        Bienvenue à nos <span class="highlight">30 ans</span> 🥂<br><br>
+        Venez célébrer avec nous cette nouvelle décennie
+        le <span class="highlight">samedi 6 septembre 2026</span><br><br>
+        À partir de <span class="highlight">14h</span><br><br>
+        📍 56 montée des Coupes Jartelles<br>
+        38200 Vienne
+      </p>
 
-    <div class="divider"></div>
-
-    <div class="text">
-      Nous avons l’immense plaisir de vous inviter à célébrer avec nous
-      cette nouvelle décennie.<br><br>
-      Un seul thème, un seul mot d’ordre :
-      <br><br>
-      <span class="highlight">SURPRENEZ-NOUS</span>
-    </div>
-
-    <div class="info">
-      <strong>Samedi 6 septembre 2026</strong><br>
-      À partir de 14h<br><br>
-      56 montée des Coupes Jartelles<br>
-      38200 Vienne
+      <div class="map">
+        <iframe
+          src="https://www.google.com/maps?q=56%20mont%C3%A9e%20des%20Coupes%20Jartelles%2038200%20Vienne&output=embed">
+        </iframe>
+      </div>
     </div>
 
   </div>
@@ -204,18 +212,19 @@
 
     setTimeout(() => {
       document.getElementById('loadingView').style.display = 'none';
-      document.getElementById('surpriseView').style.display = 'block';
+      document.getElementById('inviteView').style.display = 'block';
       launchConfetti();
-    }, 2000);
+    }, 1800);
   }
 
   function launchConfetti() {
     const card = document.getElementById('card');
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 30; i++) {
       const confetti = document.createElement('div');
       confetti.classList.add('confetti');
       confetti.style.left = Math.random() * 100 + '%';
       confetti.style.animationDelay = Math.random() * 2 + 's';
+      confetti.style.background = Math.random() > 0.5 ? '#00aff0' : '#f5c542';
       card.appendChild(confetti);
     }
   }
