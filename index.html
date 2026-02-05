@@ -90,7 +90,7 @@
     }
     @keyframes fadeIn { from {opacity:0; transform:translateY(10px)} to {opacity:1; transform:translateY(0)} }
 
-    /* PHOTO EN FOND À 20% */
+    /* PHOTO EN FOND À 80% */
     .invite::before {
       content: "";
       position: absolute;
@@ -98,14 +98,14 @@
       background-image: url("photo.jpg");
       background-size: cover;
       background-position: center;
-      opacity: 0.2;
+      opacity: 0.80; /* plus visible */
       z-index: 0;
     }
 
     .invite-content {
       position: relative;
       z-index: 1;
-      background: rgba(255,255,255,0.90);
+      background: rgba(255,255,255,0.86);
       border-radius: 14px;
       padding: 18px;
       color: #111;
@@ -118,35 +118,47 @@
       text-align: center;
     }
 
+    .invite h3 {
+      font-size: 18px;
+      margin: 0 0 10px;
+      text-align: center;
+      font-weight: 700;
+    }
+
     .invite p {
       font-size: 16px;
       line-height: 1.6;
-      margin: 0 0 16px;
+      margin: 0 0 14px;
       text-align: center;
     }
 
     .highlight { color: #00aff0; font-weight: 700; }
 
-    /* CALLOUT RECTANGLE */
+    /* CALLOUT RECTANGLE (centré) */
     .callout {
       margin: 14px 0 18px;
       padding: 14px 14px;
       border-radius: 14px;
-      background: rgba(0, 175, 240, 0.10);
-      border: 1px solid rgba(0, 175, 240, 0.25);
+      background: rgba(0, 175, 240, 0.12);
+      border: 1px solid rgba(0, 175, 240, 0.28);
       color: #0b3a4a;
       font-size: 14px;
       line-height: 1.55;
-      text-align: left;
+      text-align: center; /* centré */
     }
-    .callout strong {
-      color: #007fb0;
+
+    .address {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #222;
     }
 
     .map {
       border-radius: 14px;
       overflow: hidden;
-      margin-top: 14px;
+      margin-top: 12px;
       border: 1px solid #ddd;
       background: #fff;
     }
@@ -230,23 +242,26 @@
     <div class="invite" id="inviteView">
       <div class="invite-content">
         <h2>📌 Save the date</h2>
+        <h3>Bienvenue à nos <span class="highlight">30 ans</span> 🥂</h3>
 
         <p>
-          Bienvenue à nos <span class="highlight">30 ans</span> 🥂<br><br>
-          On vous attend le <span class="highlight">samedi 5 septembre 2026</span><br>
-          à partir de <span class="highlight">12h30</span>
-          📍 <span class="highlight">57 Montée de Coupe-Jarret</span><br>
-          38200 Vienne
+          On vous donne rendez vous le <span class="highlight">samedi 5 septembre 2026</span><br>
+          à partir de <span class="highlight">12h30</span> à <span class="highlight">Vienne</span>
         </p>
 
         <div class="callout">
-          <strong>Un seul mot d'ordre, </strong> pour ce passage à la trentaine :<br> vous aussi, 
-          <strong>Surprenez-nous</strong> comme vous l'avez été par ce compte Only Fan. 
+          Un seul mot d'ordre pour ce passage à la trentaine : vous aussi, surprenez-nous,
+          comme vous l'avez été par l'annonce de notre Only Fan
         </div>
 
         <button class="btn btn-secondary" onclick="openAgendaModal()">
           Ajouter à mon agenda
         </button>
+
+        <div class="address">
+          📍 <strong>57 Montée de Coupe-Jarret</strong><br>
+          38200 Vienne
+        </div>
 
         <div class="map">
           <iframe
@@ -285,7 +300,7 @@
   const EVENT = {
     title: "Save the date – 30 ans Juju & Yvan",
     location: "57 Montée de Coupe-Jarret, 38200 Vienne",
-    details: "Bienvenue à nos 30 ans ! Début le samedi 5 septembre 2026 à partir de 12h30. On prolonge jusqu’au dimanche 6 septembre 14h. Mot d’ordre : Surprenez-nous (comme vous l’avez été par notre compte OF).",
+    details: "Bienvenue à nos 30 ans ! Rendez-vous le samedi 5 septembre 2026 à partir de 12h30 à Vienne. Un seul mot d’ordre : surprenez-nous (comme vous l’avez été par l’annonce de notre Only Fan).",
     dtStartUTC: "20260905T103000Z",
     dtEndUTC:   "20260906T120000Z"
   };
@@ -377,3 +392,4 @@ END:VCALENDAR`;
 
 </body>
 </html>
+
