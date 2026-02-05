@@ -8,15 +8,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
+    * { box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
-    body {
-      margin: 0;
-      background: #f2f2f2;
-    }
+    body { margin: 0; background: #f2f2f2; }
 
     /* HEADER */
     header {
@@ -25,18 +19,11 @@
       padding: 14px;
       font-size: 20px;
       font-weight: 700;
-      text-align: center;
+      text-align: center; /* centré */
     }
+    header span { font-weight: 400; }
 
-    header span {
-      font-weight: 400;
-    }
-
-    .container {
-      padding: 16px;
-      max-width: 420px;
-      margin: 0 auto;
-    }
+    .container { padding: 16px; max-width: 420px; margin: 0 auto; }
 
     .card {
       background: white;
@@ -59,16 +46,8 @@
       background-position: center;
     }
 
-    h1 {
-      font-size: 20px;
-      margin-bottom: 6px;
-    }
-
-    .subtitle {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 24px;
-    }
+    h1 { font-size: 20px; margin: 0 0 6px; }
+    .subtitle { font-size: 14px; color: #666; margin: 0 0 24px; }
 
     .btn {
       background: #00aff0;
@@ -81,16 +60,17 @@
       font-weight: 600;
       cursor: pointer;
     }
+    .btn:hover { background: #0099d6; }
 
-    .btn:hover {
-      background: #0099d6;
-    }
-
-    .small {
-      font-size: 12px;
-      color: #888;
+    .btn-secondary {
+      background: white;
+      color: #00aff0;
+      border: 1px solid rgba(0,175,240,0.35);
       margin-top: 10px;
     }
+    .btn-secondary:hover { background: rgba(0,175,240,0.08); }
+
+    .small { font-size: 12px; color: #888; margin-top: 10px; }
 
     /* LOADING */
     .loading {
@@ -99,22 +79,19 @@
       font-size: 16px;
       animation: pulse 1.2s infinite;
     }
-
-    @keyframes pulse {
-      0% { opacity: .4; }
-      50% { opacity: 1; }
-      100% { opacity: .4; }
-    }
+    @keyframes pulse { 0%{opacity:.4} 50%{opacity:1} 100%{opacity:.4} }
 
     /* INVITATION */
     .invite {
       display: none;
       position: relative;
-      color: #111;
       animation: fadeIn 0.6s ease forwards;
+      border-radius: 14px;
+      overflow: hidden;
     }
+    @keyframes fadeIn { from {opacity:0; transform:translateY(10px)} to {opacity:1; transform:translateY(0)} }
 
-    /* PHOTO EN FOND AVEC TRANSPARENCE */
+    /* PHOTO EN FOND À 50% */
     .invite::before {
       content: "";
       position: absolute;
@@ -129,44 +106,24 @@
     .invite-content {
       position: relative;
       z-index: 1;
-      background: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.88);
       border-radius: 14px;
-      padding: 20px;
+      padding: 18px;
+      color: #111;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .invite h2 {
-      font-size: 22px;
-      margin-bottom: 12px;
-    }
-
-    .invite p {
-      font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .highlight {
-      color: #00aff0;
-      font-weight: 700;
-    }
+    .invite h2 { font-size: 22px; margin: 0 0 12px; }
+    .invite p { font-size: 16px; line-height: 1.6; margin: 0 0 16px; }
+    .highlight { color: #00aff0; font-weight: 700; }
 
     .map {
       border-radius: 14px;
       overflow: hidden;
-      margin-top: 20px;
+      margin-top: 14px;
       border: 1px solid #ddd;
+      background: #fff;
     }
-
-    iframe {
-      width: 100%;
-      height: 220px;
-      border: none;
-    }
+    iframe { width: 100%; height: 220px; border: none; }
 
     /* CONFETTIS */
     .confetti {
@@ -175,12 +132,48 @@
       height: 8px;
       top: -10px;
       animation: fall 2.5s linear infinite;
+      z-index: 5;
     }
+    @keyframes fall { to { transform: translateY(650px) rotate(360deg); } }
 
-    @keyframes fall {
-      to {
-        transform: translateY(600px) rotate(360deg);
-      }
+    /* MODAL AGENDA */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 999;
+      padding: 16px;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .modal {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      overflow: hidden;
+    }
+    .modal-header {
+      padding: 16px 16px 10px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    .modal-title { font-weight: 700; font-size: 16px; margin: 0; color: #111; }
+    .modal-sub { font-size: 13px; color: #666; margin: 6px 0 0; }
+    .modal-body { padding: 16px; }
+    .modal-actions { display: grid; gap: 10px; }
+    .modal-cancel {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      padding: 14px;
+      border-radius: 999px;
+      border: 1px solid #eee;
+      background: #fafafa;
+      cursor: pointer;
+      font-weight: 600;
     }
   </style>
 </head>
@@ -194,7 +187,7 @@
 <div class="container">
   <div class="card" id="card">
 
-    <!-- ÉTAT 1 -->
+    <!-- ÉTAT 1 : ABONNEMENT -->
     <div id="subscribeView">
       <div class="avatar"></div>
       <h1>Juju & Yvan</h1>
@@ -204,26 +197,30 @@
     </div>
 
     <!-- LOADING -->
-    <div class="loading" id="loadingView">
-      Validation de l’abonnement…
-    </div>
+    <div class="loading" id="loadingView">Validation de l’abonnement…</div>
 
-    <!-- INVITATION -->
+    <!-- ÉTAT 2 : INVITATION -->
     <div class="invite" id="inviteView">
       <div class="invite-content">
         <h2>🎉 Surprise !</h2>
         <p>
           Bienvenue à nos <span class="highlight">30 ans</span> 🥂<br><br>
           Venez célébrer avec nous cette nouvelle décennie
-          le <span class="highlight">samedi 5 septembre 2026</span><br><br>
-          À partir de <span class="highlight">12h30</span><br><br>
-          📍 57 montée Coupe Jarret <br>
+          le <span class="highlight">samedi 6 septembre 2026</span><br><br>
+          À partir de <span class="highlight">14h</span><br><br>
+          📍 57 Montée de Coupe-Jarret<br>
           38200 Vienne
         </p>
 
+        <button class="btn btn-secondary" onclick="openAgendaModal()">
+          Ajouter à mon agenda
+        </button>
+
         <div class="map">
           <iframe
-            src="https://www.google.com/maps?q=57%20mont%C3%A9e%20des%20Coupe%20Jarret%2038200%20Vienne&output=embed">
+            src="https://www.google.com/maps?q=57%20Mont%C3%A9e%20de%20Coupe-Jarret%2C%2038200%20Vienne&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
           </iframe>
         </div>
       </div>
@@ -232,7 +229,35 @@
   </div>
 </div>
 
+<!-- MODAL AGENDA -->
+<div class="modal-backdrop" id="agendaModal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-header">
+      <p class="modal-title">Ajouter à mon agenda</p>
+      <p class="modal-sub">Choisissez votre calendrier</p>
+    </div>
+    <div class="modal-body">
+      <div class="modal-actions">
+        <button class="btn" onclick="addToGoogleCalendar()">Google Agenda</button>
+        <button class="btn btn-secondary" onclick="downloadICS()">Apple / iPhone (Calendrier)</button>
+      </div>
+      <button class="modal-cancel" onclick="closeAgendaModal()">Annuler</button>
+    </div>
+  </div>
+</div>
+
 <script>
+  // ---- PARAMÈTRES ÉVÉNEMENT (modifiable si besoin) ----
+  const EVENT = {
+    title: "Anniversaire Juju & Yvan – 30 ans",
+    location: "57 Montée de Coupe-Jarret, 38200 Vienne",
+    details: "Bienvenue à nos 30 ans ! Venez célébrer avec nous cette nouvelle décennie. Mot d’ordre : Surprenez-nous.",
+    // Samedi 6 Septembre 2026 — début 14:00 (Europe/Paris) = 12:00 UTC
+    // Fin choisie: 23:00 (Europe/Paris) = 21:00 UTC (modifiable)
+    dtStartUTC: "20260906T120000Z",
+    dtEndUTC:   "20260906T210000Z"
+  };
+
   function subscribe() {
     document.getElementById('subscribeView').style.display = 'none';
     document.getElementById('loadingView').style.display = 'block';
@@ -246,14 +271,80 @@
 
   function launchConfetti() {
     const card = document.getElementById('card');
-    for (let i = 0; i < 30; i++) {
-      const confetti = document.createElement('div');
-      confetti.classList.add('confetti');
-      confetti.style.left = Math.random() * 100 + '%';
-      confetti.style.background = Math.random() > 0.5 ? '#00aff0' : '#f5c542';
-      confetti.style.animationDelay = Math.random() * 2 + 's';
-      card.appendChild(confetti);
+    for (let i = 0; i < 34; i++) {
+      const c = document.createElement('div');
+      c.classList.add('confetti');
+      c.style.left = Math.random() * 100 + '%';
+      c.style.background = Math.random() > 0.5 ? '#00aff0' : '#f5c542';
+      c.style.animationDelay = Math.random() * 1.8 + 's';
+      c.style.opacity = (0.7 + Math.random() * 0.3).toFixed(2);
+      card.appendChild(c);
     }
+  }
+
+  // ---- MODAL AGENDA ----
+  function openAgendaModal() {
+    document.getElementById('agendaModal').style.display = 'flex';
+  }
+  function closeAgendaModal() {
+    document.getElementById('agendaModal').style.display = 'none';
+  }
+  document.getElementById('agendaModal').addEventListener('click', (e) => {
+    if (e.target.id === 'agendaModal') closeAgendaModal();
+  });
+
+  // ---- GOOGLE CALENDAR ----
+  function addToGoogleCalendar() {
+    // Google Calendar template link
+    const base = "https://calendar.google.com/calendar/render?action=TEMPLATE";
+    const text = "&text=" + encodeURIComponent(EVENT.title);
+    const dates = "&dates=" + EVENT.dtStartUTC + "/" + EVENT.dtEndUTC; // UTC format accepted
+    const details = "&details=" + encodeURIComponent(EVENT.details);
+    const location = "&location=" + encodeURIComponent(EVENT.location);
+    const url = base + text + dates + details + location;
+    window.open(url, "_blank");
+    closeAgendaModal();
+  }
+
+  // ---- APPLE / iOS CALENDAR (.ics) ----
+  function downloadICS() {
+    const ics =
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//onlyfanjujuyvan//Invitation//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:${Date.now()}@onlyfanjujuyvan
+DTSTAMP:${new Date().toISOString().replace(/[-:]/g,'').split('.')[0]}Z
+DTSTART:${EVENT.dtStartUTC}
+DTEND:${EVENT.dtEndUTC}
+SUMMARY:${escapeICS(EVENT.title)}
+LOCATION:${escapeICS(EVENT.location)}
+DESCRIPTION:${escapeICS(EVENT.details)}
+END:VEVENT
+END:VCALENDAR`;
+
+    const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "invitation_juju_yvan.ics";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    closeAgendaModal();
+  }
+
+  function escapeICS(str) {
+    return String(str)
+      .replace(/\\/g, "\\\\")
+      .replace(/\n/g, "\\n")
+      .replace(/,/g, "\\,")
+      .replace(/;/g, "\\;");
   }
 </script>
 
