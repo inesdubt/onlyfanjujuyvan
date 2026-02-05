@@ -18,13 +18,14 @@
       background: #f2f2f2;
     }
 
-    /* HEADER MOBILE */
+    /* HEADER */
     header {
       background: #00aff0;
       color: white;
       padding: 14px;
       font-size: 20px;
       font-weight: 700;
+      text-align: center;
     }
 
     header span {
@@ -47,12 +48,15 @@
       overflow: hidden;
     }
 
+    /* PHOTO PROFIL */
     .avatar {
-      width: 90px;
-      height: 90px;
+      width: 96px;
+      height: 96px;
       border-radius: 50%;
-      background: #ddd;
       margin: 0 auto 16px;
+      background-image: url("photo.jpg");
+      background-size: cover;
+      background-position: center;
     }
 
     h1 {
@@ -105,7 +109,29 @@
     /* INVITATION */
     .invite {
       display: none;
+      position: relative;
+      color: #111;
       animation: fadeIn 0.6s ease forwards;
+    }
+
+    /* PHOTO EN FOND AVEC TRANSPARENCE */
+    .invite::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("photo.jpg");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    .invite-content {
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,0.85);
+      border-radius: 14px;
+      padding: 20px;
     }
 
     @keyframes fadeIn {
@@ -147,9 +173,8 @@
       position: absolute;
       width: 8px;
       height: 8px;
-      background: #00aff0;
-      animation: fall 2.5s linear infinite;
       top: -10px;
+      animation: fall 2.5s linear infinite;
     }
 
     @keyframes fall {
@@ -169,7 +194,7 @@
 <div class="container">
   <div class="card" id="card">
 
-    <!-- ÉTAT 1 : ABONNEMENT -->
+    <!-- ÉTAT 1 -->
     <div id="subscribeView">
       <div class="avatar"></div>
       <h1>Juju & Yvan</h1>
@@ -183,22 +208,24 @@
       Validation de l’abonnement…
     </div>
 
-    <!-- ÉTAT 2 : INVITATION -->
+    <!-- INVITATION -->
     <div class="invite" id="inviteView">
-      <h2>🎉 Surprise !</h2>
-      <p>
-        Bienvenue à nos <span class="highlight">30 ans</span> 🥂<br><br>
-        Venez célébrer avec nous cette nouvelle décennie
-        le <span class="highlight">samedi 6 septembre 2026</span><br><br>
-        À partir de <span class="highlight">14h</span><br><br>
-        📍 56 montée des Coupes Jartelles<br>
-        38200 Vienne
-      </p>
+      <div class="invite-content">
+        <h2>🎉 Surprise !</h2>
+        <p>
+          Bienvenue à nos <span class="highlight">30 ans</span> 🥂<br><br>
+          Venez célébrer avec nous cette nouvelle décennie
+          le <span class="highlight">samedi 6 septembre 2026</span><br><br>
+          À partir de <span class="highlight">14h</span><br><br>
+          📍 56 montée des Coupes Jartelles<br>
+          38200 Vienne
+        </p>
 
-      <div class="map">
-        <iframe
-          src="https://www.google.com/maps?q=56%20mont%C3%A9e%20des%20Coupes%20Jartelles%2038200%20Vienne&output=embed">
-        </iframe>
+        <div class="map">
+          <iframe
+            src="https://www.google.com/maps?q=56%20mont%C3%A9e%20des%20Coupes%20Jartelles%2038200%20Vienne&output=embed">
+          </iframe>
+        </div>
       </div>
     </div>
 
@@ -223,8 +250,8 @@
       const confetti = document.createElement('div');
       confetti.classList.add('confetti');
       confetti.style.left = Math.random() * 100 + '%';
-      confetti.style.animationDelay = Math.random() * 2 + 's';
       confetti.style.background = Math.random() > 0.5 ? '#00aff0' : '#f5c542';
+      confetti.style.animationDelay = Math.random() * 2 + 's';
       card.appendChild(confetti);
     }
   }
